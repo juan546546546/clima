@@ -1,0 +1,46 @@
+// To parse this JSON data, do
+//
+//     final productoModel = productoModelFromJson(jsonString);
+
+import 'dart:convert';
+
+CarritoModel carritoModelFromJson(String str) =>
+    CarritoModel.fromJson(json.decode(str));
+
+String carritoModelToJson(CarritoModel data) => json.encode(data.toJson());
+
+class CarritoModel {
+  String id;
+  String titulo;
+  String descripcion;
+  double valor;
+  String fotoUrl;
+  String categoria;
+
+  CarritoModel({
+    this.id,
+    this.titulo = '',
+    this.categoria = '',
+    this.descripcion = '',
+    this.valor = 0.0,
+    this.fotoUrl,
+  });
+
+  factory CarritoModel.fromJson(Map<String, dynamic> json) => new CarritoModel(
+        id: json["id"],
+        titulo: json["titulo"],
+        descripcion: json["descripcion"],
+        valor: json["valor"],
+        fotoUrl: json["fotoUrl"],
+        categoria: json['categoria'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        // "id"         : id,
+        "titulo": titulo,
+        "descripcion": descripcion,
+        "valor": valor,
+        "fotoUrl": fotoUrl,
+        "categoria": categoria
+      };
+}
